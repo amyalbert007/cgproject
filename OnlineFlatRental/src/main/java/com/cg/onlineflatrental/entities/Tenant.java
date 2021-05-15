@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "Tenant")
 public class Tenant {
@@ -14,7 +15,7 @@ public class Tenant {
 	@Column
 	private int tenantAge;
 	@Column
-	private FlatAddress flatAddress;
+	private FlatAddress tenantAddress;
 	public int getTenantId() {
 		return tenantId;
 	}
@@ -33,27 +34,27 @@ public class Tenant {
 	public void setTenantAge(int tenantAge) {
 		this.tenantAge = tenantAge;
 	}
-	public FlatAddress getFlatAddress() {
-		return flatAddress;
+	public FlatAddress getTenantAddress() {
+		return tenantAddress;
 	}
-	public void setFlatAddress(FlatAddress flatAddress) {
-		this.flatAddress = flatAddress;
+	public void setTenantAddress(FlatAddress tenantAddress) {
+		this.tenantAddress = tenantAddress;
 	}
 	public Tenant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Tenant(int tenantId, String tenantName, int tenantAge, FlatAddress flatAddress) {
+	public Tenant(int tenantId, String tenantName, int tenantAge, FlatAddress tenantAddress) {
 		super();
 		this.tenantId = tenantId;
 		this.tenantName = tenantName;
 		this.tenantAge = tenantAge;
-		this.flatAddress = flatAddress;
+		this.tenantAddress = tenantAddress;
 	}
 	@Override
 	public String toString() {
 		return "Tenant [tenantId=" + tenantId + ", tenantName=" + tenantName + ", tenantAge=" + tenantAge
-				+ ", flatAddress=" + flatAddress + "]";
+				+ ", tenantAddress=" + tenantAddress + "]";
 	}
 
 }

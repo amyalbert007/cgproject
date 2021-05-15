@@ -5,8 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table (name="FlatInfo")
+@Table (name="Flat")
 public class Flat {
 	@Id
 	private int flatId;

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "FlatBooking")
 public class FlatBooking {
@@ -13,9 +14,11 @@ public class FlatBooking {
 	private int	bookingNo;
 	@Column
 	private Flat flat;
-	private Tenant tenantId;
+	private Tenant tenant;
 	private LocalDate bookingFromDate;
 	private LocalDate bookingToDate;
+	
+	
 	public int getBookingNo() {
 		return bookingNo;
 	}
@@ -28,11 +31,11 @@ public class FlatBooking {
 	public void setFlat(Flat flat) {
 		this.flat = flat;
 	}
-	public Tenant getTenantId() {
-		return tenantId;
+	public Tenant getTenant() {
+		return tenant;
 	}
-	public void setTenantId(Tenant tenantId) {
-		this.tenantId = tenantId;
+	public void setTenant(Tenant tenant) {
+		this.tenant = tenant;
 	}
 	public LocalDate getBookingFromDate() {
 		return bookingFromDate;
@@ -40,15 +43,16 @@ public class FlatBooking {
 	public void setBookingFromDate(LocalDate bookingFromDate) {
 		this.bookingFromDate = bookingFromDate;
 	}
+	
 	public FlatBooking() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public FlatBooking(int bookingNo, Flat flat, Tenant tenantId, LocalDate bookingFromDate, LocalDate bookingToDate) {
+	public FlatBooking(int bookingNo, Flat flat, Tenant tenant, LocalDate bookingFromDate, LocalDate bookingToDate) {
 		super();
 		this.bookingNo = bookingNo;
 		this.flat = flat;
-		this.tenantId = tenantId;
+		this.tenant = tenant;
 		this.bookingFromDate = bookingFromDate;
 		this.bookingToDate = bookingToDate;
 	}
@@ -60,7 +64,7 @@ public class FlatBooking {
 	}
 	@Override
 	public String toString() {
-		return "FlatBooking [bookingNo=" + bookingNo + ", flat=" + flat + ", tenantId=" + tenantId
+		return "FlatBooking [bookingNo=" + bookingNo + ", flat=" + flat + ", tenant=" + tenant
 				+ ", bookingFromDate=" + bookingFromDate + ", bookingToDate=" + bookingToDate + "]";
 	}
 

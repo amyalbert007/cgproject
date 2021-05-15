@@ -10,9 +10,9 @@ public class OnlineFlatRentalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineFlatRentalApplication.class, args);
 	}
-	@Bean
-	  public RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
+	//@Bean
+	  //public RestTemplate getRestTemplate() {
+		//return new RestTemplate();
+	//}
 
 }
