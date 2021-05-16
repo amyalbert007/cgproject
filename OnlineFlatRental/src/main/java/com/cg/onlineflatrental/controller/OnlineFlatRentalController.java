@@ -3,8 +3,7 @@ package com.cg.onlineflatrental.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,40 +29,27 @@ public class OnlineFlatRentalController {
 	
 
 
-	@PostMapping("/add-flatBooking")
-	public ResponseEntity<Object> addFlatBooking(@RequestBody FlatBooking flatBooking) {
-		FlatBookingDTO flatBookingDTO = null;
-		ResponseEntity<Object> flatBookingResponse = null;
-		flatBookingDTO = flatBookingService.addFlatBooking(flatBooking);
-		flatBookingResponse = new ResponseEntity<>(flatBookingDTO, HttpStatus.ACCEPTED);
-		
-		return flatBookingResponse;
+	
+	@PostMapping("/addFlat")
+	public FlatBookingDTO addFlatBooking(@RequestBody FlatBooking flatBooking)
+	{
+		return flatBookingService.addFlatBooking(flatBooking);
 	}
 	
 	
-	@PutMapping("/update-flatBooking")
-	public ResponseEntity<Object> updateFlatBooking(@RequestBody FlatBooking flatBooking) {
-		
-		FlatBookingDTO flatBookingDTO = null;
-		ResponseEntity<Object> flatBookingResponse = null;
-		flatBookingDTO = flatBookingService.updateFlatBooking(flatBooking);
-		flatBookingResponse = new ResponseEntity<>(flatBookingDTO, HttpStatus.ACCEPTED);
-		return flatBookingResponse;
-	}
-	@DeleteMapping("/delete-flatBooking/{id}")
-	public ResponseEntity<Object> deleteFlatBooking(@PathVariable int id) {
-		
-		FlatBookingDTO flatBookingDTO = flatBookingService.deleteFlatBooking(id);
-		
-		return new ResponseEntity<>(flatBookingDTO, HttpStatus.ACCEPTED);
+	@PutMapping("/updateFlat")
+	public FlatBookingDTO updateFlatBooking(@RequestBody FlatBooking flatBooking){
+		return flatBookingService.updateFlatBooking(flatBooking);
 	}
 	
-	@GetMapping("/view-flatBooking/{id}")
-	public ResponseEntity<Object> getFlatBookingById(@PathVariable int id) {
-		FlatBookingDTO flatBookingDTO = null;
-		flatBookingDTO = flatBookingService.viewFlatBooking(id);
+	@DeleteMapping("/deleteFlat/{id}")
+	public FlatBookingDTO deleteFlatBooking(@PathVariable int id){
 		
-		return new ResponseEntity<>(flatBookingDTO, HttpStatus.ACCEPTED);
+		return flatBookingService.deleteFlatBooking(id);
+	}
+	@GetMapping("/viewAllFlat/{id}")
+	public FlatBookingDTO getFlatBookingById(@PathVariable int id){
+		return flatBookingService.viewFlatBooking(id);
 	}
 	
 

@@ -3,19 +3,22 @@ package com.cg.onlineflatrental.services;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineflatrental.dao.IFlatBookingJpaDao;
 import com.cg.onlineflatrental.entities.FlatBooking;
 import com.cg.onlineflatrental.exception.FlatBookingNotFoundException;
-import com.cg.onlineflatrental.exception.InvalidFlatInputException;
+
 import com.cg.onlineflatrental.model.FlatBookingDTO;
 import com.cg.onlineflatrental.util.FlatBookingUtils;
 
 @Service
+@Transactional
 public class FlatBookingServiceImpl implements IFlatBookingService{
-	String noFlat = "No FlatBooking found in given ID";
+	
 	
 	@Autowired
 	private IFlatBookingJpaDao iflatjpadao;
@@ -24,49 +27,29 @@ public class FlatBookingServiceImpl implements IFlatBookingService{
 	@Override
 	public FlatBookingDTO addFlatBooking(FlatBooking flatBooking) {
 		
-		FlatBooking flatbookingEntity;
-		if (flatBooking == null)
-			flatbookingEntity = null;
-		else
-		{
-			//validateFlatBooking(flatBooking);
-			flatbookingEntity = iflatjpadao.save(flatBooking);
-		}
 		
-		return FlatBookingUtils.convertToFlatBookingDto(flatbookingEntity);
+		
+		return FlatBookingUtils.convertToFlatBookingDto(flatBooking);
 	}
 	@Override
 	public FlatBookingDTO updateFlatBooking(FlatBooking flatBooking) {
 		
-		//FlatBooking flatbookingEntity;
-		//FlatBooking existFlatBooking = iflatjpadao.findById(flatBooking.getBookingNo()).orElse(null);
-		/*if (existFlatBooking == null)
-			throw new FlatBookingNotFoundException(noFlat);
-		else
-		{
-			//validateFlatBooking(flatBooking);
-			flatbookingEntity = iflatjpadao.save(flatBooking);
-		}*/
+		
 		
 		return FlatBookingUtils.convertToFlatBookingDto(flatBooking);
 	}
 	@Override
 	public FlatBookingDTO deleteFlatBooking(int id) {
-		//LOGGER.info("deleteFlatBooking() service is initiated");
+		
 		FlatBooking existFlatBooking = iflatjpadao.findById(id).orElse(null);
-		//if (existFlatBooking == null)
-			//throw new FlatBookingNotFoundException(noFlat);
-	//	else
-			//flatbookingRepo.delete(existFlatBooking);
-		//LOGGER.info("deleteFlatBooking() service has executed");
+		
 		return FlatBookingUtils.convertToFlatBookingDto(existFlatBooking);
 	}
 	@Override
 	public FlatBookingDTO viewFlatBooking(int id) {
 		
 		FlatBooking existFlatBooking = iflatjpadao.findById(id).orElse(null);
-		//if (existFlatBooking == null)
-		//	throw new FlatBookingNotFoundException(noFlat);
+		
 		
 		return FlatBookingUtils.convertToFlatBookingDto(existFlatBooking);
 	}

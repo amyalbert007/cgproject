@@ -1,8 +1,11 @@
 package com.cg.onlineflatrental.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -14,6 +17,8 @@ public class Flat {
 	
 	@Column
 	private float cost;
+	@OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "flataddressId")
 	private FlatAddress flatAddress;
 	private String avialibilty;
 	

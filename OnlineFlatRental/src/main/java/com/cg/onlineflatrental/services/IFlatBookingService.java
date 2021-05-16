@@ -13,11 +13,6 @@ public interface IFlatBookingService {
 	public FlatBookingDTO viewFlatBooking(int id);
 	public List<FlatBookingDTO> viewAllFlatBooking();
 	
-	//Iterable<FlatBooking> getAllBookings();
-	//FlatBooking findBookingByNo(Integer bookingNo);
-	//FlatBooking findBookingByEmail(String email);
-	//FlatBooking updateEmailByNo(Integer bookingNo, String email);
-	//FlatBooking  createFlatBooking(FlatBooking booking);
-	//boolean deleteBookingByNo(Integer FlatBooking);
+	
 
 }
