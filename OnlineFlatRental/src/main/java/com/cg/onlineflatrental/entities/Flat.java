@@ -18,6 +18,7 @@ public class Flat {
 	@Column
 	private float cost;
 	@OneToOne(cascade=CascadeType.ALL)
+	
     @JoinColumn(name = "flataddressId")
 	private FlatAddress flatAddress;
 	private String avialibilty;

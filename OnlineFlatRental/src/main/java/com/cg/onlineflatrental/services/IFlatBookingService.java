@@ -7,11 +7,12 @@ import com.cg.onlineflatrental.model.FlatBookingDTO;
 
 
 public interface IFlatBookingService {
-	public FlatBookingDTO addFlatBooking(FlatBooking flat);
-	public FlatBookingDTO updateFlatBooking(FlatBooking flat);
-	public FlatBookingDTO deleteFlatBooking(int id);
-	public FlatBookingDTO viewFlatBooking(int id);
-	public List<FlatBookingDTO> viewAllFlatBooking();
+	//public FlatBookingDTO addFlatBooking(FlatBooking flatBooking);
+	public FlatBooking updateFlatBooking(FlatBooking flatBooking);
+	public boolean deleteFlatBookingbyId(int bookingNo);
+	public FlatBooking viewFlatBooking(int bookingNo);
+	public List<FlatBooking> viewAllFlatBooking();
+	public FlatBooking addFlatBooking1(FlatBooking flatBooking);
 	
 	
 

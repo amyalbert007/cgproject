@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -31,13 +33,16 @@ import javax.persistence.Table;
 @Table(name = "FlatBooking")
 public class FlatBooking {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int	bookingNo;
 	//@Column
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "flat1Id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Flat flat;
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "tenant1Id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Tenant tenant;
 	@Column
 	private LocalDate bookingFromDate;

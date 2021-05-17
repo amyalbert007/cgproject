@@ -22,44 +22,60 @@ public class FlatBookingServiceImpl implements IFlatBookingService{
 	
 	@Autowired
 	private IFlatBookingJpaDao iflatjpadao;
-
-	
 	@Override
-	public FlatBookingDTO addFlatBooking(FlatBooking flatBooking) {
+	public FlatBooking addFlatBooking1(FlatBooking flatBooking)
+    {
+        return iflatjpadao.saveAndFlush(flatBooking);
+    }
+	//@Override
+	//public FlatBookingDTO addFlatBooking(FlatBooking flatBooking) {
 		
 		
 		
-		return FlatBookingUtils.convertToFlatBookingDto(flatBooking);
+		//return FlatBookingUtils.convertToFlatBookingDto(flatBooking);
+	//}
+	@Override
+	public FlatBooking updateFlatBooking(FlatBooking flatBooking) {
+		Integer bookingNo=flatBooking.getBookingNo();
+		FlatBooking flat1=iflatjpadao.findById(bookingNo).get();
+        flat1.setFlat(flatBooking.getFlat());
+        flat1.setTenant(flatBooking.getTenant());
+        flat1.setBookingFromDate(flatBooking.getBookingFromDate());
+        flat1.setBookingToDate(flatBooking.getBookingToDate());
+        return iflatjpadao.save(flat1);
+		
+		
+		
+		//return FlatBookingUtils.convertToFlatBookingDto(flatBooking);
 	}
 	@Override
-	public FlatBookingDTO updateFlatBooking(FlatBooking flatBooking) {
+	public boolean deleteFlatBookingbyId(int bookingNo) {
 		
+		FlatBooking existFlatBooking = iflatjpadao.findById(bookingNo).orElse(null);
 		
-		
-		return FlatBookingUtils.convertToFlatBookingDto(flatBooking);
+		 iflatjpadao.deleteById(bookingNo);
+		 if(null == existFlatBooking) {
+			 return true;
+			 
+		 }
+		 return false;
+		 
 	}
 	@Override
-	public FlatBookingDTO deleteFlatBooking(int id) {
+	public FlatBooking viewFlatBooking(int bookingNo) {
 		
-		FlatBooking existFlatBooking = iflatjpadao.findById(id).orElse(null);
+		//FlatBooking existFlatBooking = iflatjpadao.findById(bookingNo).orElse(null);
 		
-		return FlatBookingUtils.convertToFlatBookingDto(existFlatBooking);
+		
+		return iflatjpadao.findById(bookingNo).orElse(null);
 	}
 	@Override
-	public FlatBookingDTO viewFlatBooking(int id) {
+	public List<FlatBooking> viewAllFlatBooking() {
+		//List<FlatBooking> flatbookingList = iflatjpadao.findAll();
 		
-		FlatBooking existFlatBooking = iflatjpadao.findById(id).orElse(null);
-		
-		
-		return FlatBookingUtils.convertToFlatBookingDto(existFlatBooking);
+		return iflatjpadao.findAll();
 	}
-	@Override
-	public List<FlatBookingDTO> viewAllFlatBooking() {
-		List<FlatBooking> flatbookingList = iflatjpadao.findAll();
-		
-		return FlatBookingUtils.convertToFlatBookingDtoList(flatbookingList);
-	}
-	public static boolean validateFlatBooking(FlatBooking flatBooking) throws FlatBookingNotFoundException{
+	/*public static boolean validateFlatBooking(FlatBooking flatBooking) throws FlatBookingNotFoundException{
 		
 		boolean flag = false;
 		if (flatBooking == null) {
@@ -119,7 +135,7 @@ public class FlatBookingServiceImpl implements IFlatBookingService{
 			flag = true;
 		
 		return flag;
-	}
+	}*/
 
 	
 

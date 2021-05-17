@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.onlineflatrental.entities.FlatBooking;
 import com.cg.onlineflatrental.model.FlatBookingDTO;
 import com.cg.onlineflatrental.services.IFlatBookingService;
-@CrossOrigin(origins="http://localhost:8099")
+
 @RestController
 @RequestMapping("/api/ofr")
 public class OnlineFlatRentalController {
@@ -29,33 +28,44 @@ public class OnlineFlatRentalController {
 	
 
 
-	
-	@PostMapping("/addFlat")
-	public FlatBookingDTO addFlatBooking(@RequestBody FlatBooking flatBooking)
-	{
-		return flatBookingService.addFlatBooking(flatBooking);
-	}
+	@PostMapping("/addFlat1")
+    public FlatBooking addFlatBooking1(@RequestBody FlatBooking flatBooking)
+    {
+        return flatBookingService.addFlatBooking1(flatBooking);
+    }
+	//@PostMapping("/addFlat")
+	//public FlatBookingDTO addFlatBooking(@RequestBody FlatBooking flatBooking)
+	//{
+	//	return flatBookingService.addFlatBooking(flatBooking);
+	//}
 	
 	
 	@PutMapping("/updateFlat")
-	public FlatBookingDTO updateFlatBooking(@RequestBody FlatBooking flatBooking){
-		return flatBookingService.updateFlatBooking(flatBooking);
-	}
+	public FlatBooking updateFlatBooking(@RequestBody FlatBooking flatBooking){
+			return flatBookingService.updateFlatBooking(flatBooking);
+		}
+	//public FlatBookingDTO updateFlatBooking(@RequestBody FlatBooking flatBooking){
+	//	return flatBookingService.updateFlatBooking(flatBooking);
+//	}
 	
-	@DeleteMapping("/deleteFlat/{id}")
-	public FlatBookingDTO deleteFlatBooking(@PathVariable int id){
+	@DeleteMapping("/deleteFlat/{bookingNo}")public boolean deleteFlatBookingbyId(@PathVariable int bookingNo){
 		
-		return flatBookingService.deleteFlatBooking(id);
+		return flatBookingService.deleteFlatBookingbyId(bookingNo);
 	}
-	@GetMapping("/viewAllFlat/{id}")
-	public FlatBookingDTO getFlatBookingById(@PathVariable int id){
-		return flatBookingService.viewFlatBooking(id);
+	//public FlatBookingDTO deleteFlatBooking(@PathVariable int id){
+		
+	//	return flatBookingService.deleteFlatBooking(id);
+	//}
+	@GetMapping("/viewAllFlat/{bookingNo}")
+	public FlatBooking getFlatBookingById(@PathVariable int bookingNo){
+		System.out.println("amit");
+		return flatBookingService.viewFlatBooking(bookingNo);
 	}
 	
 
 	@GetMapping("/view-all-flatBookings")
-	public List<FlatBookingDTO> getAllFlatBooking() {
-		return flatBookingService.viewAllFlatBooking();
+	public List<FlatBooking> viewAllFlatBooking() {
+		return (List<FlatBooking>) flatBookingService.viewAllFlatBooking();
 	}
 	
 
