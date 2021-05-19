@@ -2,6 +2,7 @@ package com.cg.onlineflatrental.services;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -22,6 +23,12 @@ public class FlatBookingServiceImpl implements IFlatBookingService{
 	
 	@Autowired
 	private IFlatBookingJpaDao iflatjpadao;
+	
+	String flatIdNotAvailable="flat with given id was not found";
+	
+	
+	
+	
 	@Override
 	public FlatBooking addFlatBooking1(FlatBooking flatBooking)
     {
@@ -34,7 +41,17 @@ public class FlatBookingServiceImpl implements IFlatBookingService{
 		
 		//return FlatBookingUtils.convertToFlatBookingDto(flatBooking);
 	//}
-	@Override
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*@Override
 	public FlatBooking updateFlatBooking(FlatBooking flatBooking) {
 		Integer bookingNo=flatBooking.getBookingNo();
 		FlatBooking flat1=iflatjpadao.findById(bookingNo).get();
@@ -47,8 +64,44 @@ public class FlatBookingServiceImpl implements IFlatBookingService{
 		
 		
 		//return FlatBookingUtils.convertToFlatBookingDto(flatBooking);
-	}
+	}*/
+	
 	@Override
+	public FlatBooking updateFlatBooking(FlatBooking flat) throws FlatBookingNotFoundException {
+		
+		Optional<FlatBooking> optional=iflatjpadao.findById(flat.getBookingNo());
+		if(optional.isPresent())
+		{
+			FlatBooking flat1=optional.get();
+			
+			flat1.setFlat(flat.getFlat());
+	        flat1.setTenant(flat.getTenant());
+	        flat1.setBookingFromDate(flat.getBookingFromDate());
+	        flat1.setBookingToDate(flat.getBookingToDate());	
+		return iflatjpadao.save(flat1);
+		}
+		else
+		{
+			 throw new FlatBookingNotFoundException(flatIdNotAvailable);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*@Override
 	public boolean deleteFlatBookingbyId(int bookingNo) {
 		
 		FlatBooking existFlatBooking = iflatjpadao.findById(bookingNo).orElse(null);
@@ -60,15 +113,69 @@ public class FlatBookingServiceImpl implements IFlatBookingService{
 		 }
 		 return false;
 		 
-	}
+	}*/
+	
+	
 	@Override
-	public FlatBooking viewFlatBooking(int bookingNo) {
+	public boolean deleteFlatBookingbyId(int bookingNo) throws FlatBookingNotFoundException {
+		
+		Optional<FlatBooking> flat=iflatjpadao.findById(bookingNo);
+		if(flat.isPresent())
+		{
+			
+			iflatjpadao.deleteById(bookingNo);
+			return true;
+			
+		}
+		else {
+			 throw new FlatBookingNotFoundException(flatIdNotAvailable);
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//@Override
+	//public FlatBooking viewFlatBooking(int bookingNo) {
 		
 		//FlatBooking existFlatBooking = iflatjpadao.findById(bookingNo).orElse(null);
 		
 		
-		return iflatjpadao.findById(bookingNo).orElse(null);
+		//return iflatjpadao.findById(bookingNo).orElse(null);
+	//}
+	@Override
+	public FlatBooking viewFlatBooking(int bookingNo) throws FlatBookingNotFoundException {
+		
+		Optional<FlatBooking> optional=iflatjpadao.findById(bookingNo);  
+		if(optional.isPresent())
+		{
+			FlatBooking flat=optional.get();
+			return flat;
+		}
+		else
+		{
+			throw new FlatBookingNotFoundException(flatIdNotAvailable);
+
+		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public List<FlatBooking> viewAllFlatBooking() {
 		//List<FlatBooking> flatbookingList = iflatjpadao.findAll();
