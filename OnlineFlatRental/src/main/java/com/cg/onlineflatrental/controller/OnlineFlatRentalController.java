@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlineflatrental.entities.FlatBooking;
 import com.cg.onlineflatrental.exception.FlatBookingNotFoundException;
+import com.cg.onlineflatrental.exception.InvalidFlatInputException;
 import com.cg.onlineflatrental.model.FlatBookingDTO;
 import com.cg.onlineflatrental.services.IFlatBookingService;
 
@@ -35,7 +36,7 @@ public class OnlineFlatRentalController {
 
 
 	@PostMapping("/addFlat1")
-    public FlatBooking addFlatBooking1(@RequestBody FlatBooking flatBooking)
+    public FlatBooking addFlatBooking1(@RequestBody FlatBooking flatBooking) throws InvalidFlatInputException
     {
         return flatBookingService.addFlatBooking1(flatBooking);
     }

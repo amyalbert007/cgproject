@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class FlatRentalExceptionHandler {
 	@ExceptionHandler(FlatBookingNotFoundException.class)
-	public ResponseEntity<ErrorMessage> handleFlatNotFoundException(FlatBookingNotFoundException ex) {
+	public ResponseEntity<ErrorMessage> handleFlatBookingNotFoundException(FlatBookingNotFoundException ex) {
 		ErrorMessage error = new ErrorMessage();
 		error.setErrorCode(HttpStatus.NOT_FOUND.value());
 		error.setErrorMessage(ex.getMessage());

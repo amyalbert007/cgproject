@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.cg.onlineflatrental.entities.FlatBooking;
 import com.cg.onlineflatrental.exception.FlatBookingNotFoundException;
+import com.cg.onlineflatrental.exception.InvalidFlatInputException;
 import com.cg.onlineflatrental.model.FlatBookingDTO;
 
 
@@ -13,7 +14,7 @@ public interface IFlatBookingService {
 	public boolean deleteFlatBookingbyId(int bookingNo)throws FlatBookingNotFoundException;
 	public FlatBooking viewFlatBooking(int bookingNo) throws FlatBookingNotFoundException;
 	public List<FlatBooking> viewAllFlatBooking();
-	public FlatBooking addFlatBooking1(FlatBooking flatBooking);
+	public FlatBooking addFlatBooking1(FlatBooking flatBooking) throws InvalidFlatInputException;
 	
 	
 
