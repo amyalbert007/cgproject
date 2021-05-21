@@ -216,13 +216,49 @@ public static boolean validateFlatBooking(FlatBooking flatBooking) throws Invali
 			validateFlatBookingStreet(flatBooking.getFlat().getFlatAddress().getStreet());
 			validateFlatBookingCity(flatBooking.getFlat().getFlatAddress().getCity());
 			validateFlatBookingState(flatBooking.getFlat().getFlatAddress().getState());
-			//validateFlatBookingPin(flatBooking.getFlat().getFlatAddress().getPin());
+			validateFlatBookingPin(flatBooking.getFlat().getFlatAddress().getPin());
 			validateFlatBookingCountry(flatBooking.getFlat().getFlatAddress().getCountry());
 			validateFlatBookingAvailability(flatBooking.getFlat().getAvialibilty());
+			
+			
+			
+			validateFlatBookingHouseNo(flatBooking.getTenant().getTenantAddress().getHouseNo());
+			validateFlatBookingStreet(flatBooking.getTenant().getTenantAddress().getStreet());
+			validateFlatBookingCity(flatBooking.getTenant().getTenantAddress().getCity());
+			validateFlatBookingState(flatBooking.getTenant().getTenantAddress().getState());
+			validateFlatBookingPin(flatBooking.getTenant().getTenantAddress().getPin());
+			validateFlatBookingCountry(flatBooking.getTenant().getTenantAddress().getCountry());
+			
+			
+			
+			
+			
+			
 			flag=true;
 		}
 		return flag;
 	}
+public static boolean validateFlatBookingPin(long pin) throws InvalidFlatInputException {
+	
+	boolean flag=false;
+	if(pin<=0)
+	{
+		throw new InvalidFlatInputException("PinCode cannot be negative");	
+	}
+	else if(Long.toString(pin).length() != 6)
+	{
+		throw new InvalidFlatInputException("PinCode should be of length 6");		
+	}
+	else if(!Long.toString(pin).matches("^[0-9]+$"))
+	{
+		throw new InvalidFlatInputException("PinCode cannot contain Alphabets or Special Characters");	
+	}
+	else
+	{
+		flag=true;
+	}
+	return flag;
+}
 public static boolean validateFlatCost(float cost) throws InvalidFlatInputException {
 	
 	boolean flag=false;

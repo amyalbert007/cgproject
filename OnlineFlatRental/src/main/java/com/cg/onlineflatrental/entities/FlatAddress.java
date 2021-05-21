@@ -15,6 +15,7 @@ public class FlatAddress {
 	private String street;
 	private String city;
 	private String state;
+	
 	private long pin;
 	private String country;
 	public FlatAddress() {
@@ -24,6 +25,15 @@ public class FlatAddress {
 	public FlatAddress(int id, int houseNo, String street, String city, String state, long pin, String country) {
 		super();
 		this.id = id;
+		this.houseNo = houseNo;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.pin = pin;
+		this.country = country;
+	}
+	public FlatAddress(int houseNo, String street, String city, String state, long pin, String country) {
+		super();
 		this.houseNo = houseNo;
 		this.street = street;
 		this.city = city;
