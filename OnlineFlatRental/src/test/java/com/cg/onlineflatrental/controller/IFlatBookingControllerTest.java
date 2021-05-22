@@ -101,7 +101,7 @@ class IFlatBookingControllerTest {
 			String jsonInput = this.convertToJson(flatBooking);
 			
 			
-			Mockito.when(iflatservice.viewFlatBooking(Mockito.any())).thenReturn(flatBooking);
+			Mockito.when(iflatservice.viewFlatBooking(Mockito.anyInt())).thenReturn(flatBooking);
 		       MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI, 102).accept(MediaType.APPLICATION_JSON)).andReturn();
 		       MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 		       String jsonOutput = mockHttpServletResponse.getContentAsString();
@@ -166,8 +166,8 @@ class IFlatBookingControllerTest {
 				
 	 			String jsonInput = this.convertToJson(flatBooking);
 	 			
-	 			Mockito.when(iflatservice.viewFlatBooking(Mockito.any())).thenReturn(flatBooking);
-	 		     Mockito.when(iflatservice.deleteFlatBookingbyId(Mockito.any())).thenReturn(true);
+	 			Mockito.when(iflatservice.viewFlatBooking(Mockito.anyInt())).thenReturn(flatBooking);
+	 		     Mockito.when(iflatservice.deleteFlatBookingbyId(Mockito.anyInt())).thenReturn(true);
 	 		     MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI, 100).accept(MediaType.APPLICATION_JSON)).andReturn();
 	 		     MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 	 		     Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());

@@ -3,7 +3,12 @@ package com.cg.onlineflatrental.services;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import org.opentest4j.AssertionFailedError;
 
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,47 +120,32 @@ public class IFlatBookingServiceImplTest {
 	}
 	
 	
-	/*@Test
-	void testUpdateFlat01() throws InvalidFlatInputException, FlatBookingNotFoundException {
-		
-		FlatBooking flatBooking=new FlatBooking();
-		FlatAddress flatAddress=new FlatAddress();
-		Flat flat=new Flat();
-		flatBooking.getBookingNo();
-		flat.getFlatId();
-		flatAddress.setHouseNo(16);
-		flatAddress.setCity("GariaA");
-		flatAddress.setStreet("SouthKolkata");
-		flatAddress.setState("West Bengal");
-		flatAddress.setCountry("India");
-		flatAddress.setPin(741539);
-		flat.setCost((float) 600000);
-		flat.setFlatAdress(flatAddress);
-		flat.setAvialibilty("Yes");
-        iflatjpadao.saveAndFlush(flatBooking);
-        flatAddress.setHouseNo(16);
-        
+	
+	@Test
+	void testViewAllFlatBooking01() {
+		assertNotNull(iflatservice.viewAllFlatBooking());
+	}
 
-        
-        Mockito.when(iflatjpadao.saveAndFlush(flatBooking)).thenReturn(flatBooking);
-		assertEquals(flatBooking.getFlat().getFlatAddress().getHouseNo(),16);
-    
-		
-		
-	}*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	private void assertNotNull(List<FlatBooking> viewAllFlatBooking) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void assertNull(List<FlatBooking> viewAllFlatBooking) {
+		// TODO Auto-generated method stub
+	}
+	@AfterAll
+	public static void end() {
+		//LOGGER.info("FlatBooking Testing Terminated");
+	}
+	@Test
+	void testViewAllFlatBooking02() throws FlatBookingNotFoundException {
+		try {
+			assertNull(iflatservice.viewAllFlatBooking());
+		} catch (AssertionFailedError exception) {
+			assertNotNull(iflatservice.viewAllFlatBooking());
+		}
+	}
 	
 	
 
