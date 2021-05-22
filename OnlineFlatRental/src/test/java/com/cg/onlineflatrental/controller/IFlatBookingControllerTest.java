@@ -32,7 +32,7 @@ import com.cg.onlineflatrental.entities.FlatAddress;
 import com.cg.onlineflatrental.entities.FlatBooking;
 import com.cg.onlineflatrental.services.IFlatBookingService;
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = OnlineFlatRentalController.class)
+@WebMvcTest(value = IFlatBookingController.class)
 class IFlatBookingControllerTest {
 	
 	 @Autowired

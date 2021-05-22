@@ -153,21 +153,7 @@ public class ILandlordServiceImplTest {
 		Flat flat=new Flat(78, (float) 20000, flatAddress,"Yes");
 		Landlord landlord=new Landlord(10,"vhjj",11,flat);
 		
-	  /*Flat flat = new Flat();
-       FlatAddress flatAddress=new FlatAddress();
-       		flat.setFlatId(3); 
-       		flat.getFlatId();
-       		flatAddress.setHouseNo(10);
-			flatAddress.setCity("Bangalore");
-			flatAddress.setStreet("nagpura");
-			flatAddress.setState("Karnataka");
-			flatAddress.setCountry("India");
-			flatAddress.setPin(560086);
-			
-			//flat.setFlatId(100);
-			flat.setCost((float) 2500);
-			flat.setFlatAddress(flatAddress);
-			flat.setAvialibilty("Yes");*/
+	  
 
 			Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
 			ilandlordjpadao.deleteById(landlord.getLandlordId());

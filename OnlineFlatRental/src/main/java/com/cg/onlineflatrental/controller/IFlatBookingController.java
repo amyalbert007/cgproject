@@ -23,8 +23,8 @@ import com.cg.onlineflatrental.services.IFlatBookingService;
 
 @RestController
 @RequestMapping("/api/ofr")
-public class OnlineFlatRentalController {
-	private static final Logger logger = LoggerFactory.getLogger(OnlineFlatRentalController.class);
+public class IFlatBookingController {
+	private static final Logger logger = LoggerFactory.getLogger(IFlatBookingController.class);
 	
 
 	@Autowired
