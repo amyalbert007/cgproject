@@ -21,20 +21,36 @@ public class Flat {
 	@Column
 	private float cost;
 	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn //(name = "flataddressId")
+    @JoinColumn(name = "flataddressId")
 	private FlatAddress flatAddress;
 	private String avialibilty;
-	
-	
-	@Override
-	public String toString() {
-		return "Flat [flatId=" + flatId + ", cost=" + cost + ", flatAddress=" + flatAddress + ", avialibilty="
-				+ avialibilty + "]";
+	public int getFlatId() {
+		return flatId;
 	}
-
-	public Flat()
-	{
-
+	public void setFlatId(int flatId) {
+		this.flatId = flatId;
+	}
+	public float getCost() {
+		return cost;
+	}
+	public void setCost(float cost) {
+		this.cost = cost;
+	}
+	public FlatAddress getFlatAddress() {
+		return flatAddress;
+	}
+	public void setFlatAddress(FlatAddress flatAddress) {
+		this.flatAddress = flatAddress;
+	}
+	public String getAvialibilty() {
+		return avialibilty;
+	}
+	public void setAvialibilty(String avialibilty) {
+		this.avialibilty = avialibilty;
+	}
+	public Flat() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	public Flat(int flatId, float cost, FlatAddress flatAddress, String avialibilty) {
 		super();
@@ -43,48 +59,13 @@ public class Flat {
 		this.flatAddress = flatAddress;
 		this.avialibilty = avialibilty;
 	}
-
-	public int getFlatId() {
-		return flatId;
+	@Override
+	public String toString() {
+		return "Flat [flatId=" + flatId + ", cost=" + cost + ", flatAddress=" + flatAddress + ", avialibilty="
+				+ avialibilty + "]";
 	}
-
-	public void setFlatId(int flatId) {
-		this.flatId = flatId;
-	}
-
-	public float getCost() {
-		return cost;
-	}
-
-	public void setCost(float cost) {
-		this.cost = cost;
-	}
-
-	public FlatAddress getFlatAddress() {
-		return flatAddress;
-	}
-
-	public void setFlatAdress(FlatAddress flatAddress) {
-		this.flatAddress = flatAddress;
-	}
-
-	public String getAvialibilty() {
-		return avialibilty;
-	}
-
-	public void setAvialibilty(String avialibilty) {
-		this.avialibilty = avialibilty;
-	}
-
-	public void setFlatAddress(FlatAddress flatAddress2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setAvailability(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
+	
+	
 
 }

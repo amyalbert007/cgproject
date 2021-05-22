@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.cg.onlineflatrental.dao.ILandlordJpaDao;
+
 import com.cg.onlineflatrental.exception.LandlordNotFoundException;
 import com.cg.onlineflatrental.model.Landlord;
 import com.cg.onlineflatrental.services.ILandlordService;
@@ -46,22 +47,111 @@ public class ILandlordServiceImplTest {
 	ILandlordService ilandlordservice;
 	
 	Landlord landlord=null;
+	Flat flat=null;
+	FlatAddress flatAddress=null;
 	
 	@Test
 	void testAddLandlord01() throws LandlordNotFoundException 
 	{
 		
-		landlord=new Landlord(1,"Nidhi",23,flatAddress);
-		flatAddress=new FlatAddress(10,"BataRoad","Gurgaon","Haryana",11038,"India");
-		flat=new Flat(78, (float) 20000, flatAddress,"Yes");
+		FlatAddress flatAddress=new FlatAddress(10,"BataRoad","Gurgaon","Haryana",11038,"India");
+		Flat flat=new Flat(78, (float) 20000, flatAddress,"Yes");
+		Landlord landlord=new Landlord(10,"vhjj",11,flat);
+		
+		
 		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
         assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
+	}
+	@Test
+	void testAddLandlord02() throws LandlordNotFoundException 
+	{
+		
+		FlatAddress flatAddress=new FlatAddress(11,"BTRoad","Gurgaon","Haryana",11038,"India");
+		Flat flat=new Flat(78, (float) 20000, flatAddress,"Yes");
+		Landlord landlord=new Landlord(10,"jkvkfuf",11,flat);
+		
+		
+		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
+        assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
+	}
+	@Test
+    void testUpdateLandlord10() throws LandlordNotFoundException {
+		FlatAddress flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
+
+
+
+        flat=new Flat(488, 1000f, flatAddress, "Y");
+        landlord = new Landlord(245, "Name", 24, flat);
+        assertNotNull(ilandlordservice.updateLandlord(landlord));
+    }
+	@Test
+	void testUpdateLandlord11() throws LandlordNotFoundException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
+
+		flat=new Flat(488, 1000f, flatAddress, "Y");
+		landlord = new Landlord(6, "Name", 24, flat);
+		try {
+			ilandlordservice.updateLandlord(landlord);
+		} catch (LandlordNotFoundException exception) {
+			assertEquals("No Landlord found in given ID", exception.getMessage());
+		}
+	}
+	@Test
+//	void testDeleteLandlord20() throws LandlordNotFoundException {
+//		assertNotNull(service.viewLandlord(251).getLandlordName());
+//	}
+
+	
+	void testDeleteLandlord21() throws LandlordNotFoundException {
+
+		try {
+			ilandlordservice.deleteLandlordById(109);
+		} catch (LandlordNotFoundException exception) {
+			assertEquals("No Landlord found in given ID", exception.getMessage());
+		}
+	}
+
+	@Test
+	void testDeleteLandlord22() throws LandlordNotFoundException {
+
+		try {
+			ilandlordservice.deleteLandlordById(114);
+		} catch (LandlordNotFoundException exception) {
+			assertEquals("No Landlord found in given ID", exception.getMessage());
+		}
+	}
+
+	@Test
+	void testViewLandlord23() throws LandlordNotFoundException {
+		assertEquals("Name", ilandlordservice.viewLandlordById(245).getLandlordName());
+	}
+
+	@Test
+	void testViewLandlord24() throws LandlordNotFoundException {
+		try {
+			ilandlordservice.viewLandlordById(12);
+		} catch (LandlordNotFoundException exception) {
+			assertEquals("No Landlord found in given ID", exception.getMessage());
+		}
+	}
+
+	@Test
+	void testViewAllLandlord25() {
+		assertNotNull(ilandlordservice.viewAllLandlord());
+	}
+	@Test
+	void testViewLandlord01() throws LandlordNotFoundException {
+		try {
+			assertEquals(25, ilandlordservice.viewLandlordById(26).getLandlordAge());
+		} catch (LandlordNotFoundException exception) {
+			assertEquals("flat with given id was not found", exception.getMessage());
+		}
 	}
 	
 	
 	
 	
-	@Test
+	/*@Test
 	void testAddLandlord02()  {
 		landlord = new Landlord(5,"Ankit",25,flatAddress);
 		flatAddress = new FlatAddress(1, "street", "city", "state", 221106, "country");
@@ -363,6 +453,6 @@ public class ILandlordServiceImplTest {
 			} catch (LandlordNotFoundException exception) {
 				assertEquals("landlord with given id was not found", exception.getMessage());
 			}
-		}
+		}*/
 
 }
