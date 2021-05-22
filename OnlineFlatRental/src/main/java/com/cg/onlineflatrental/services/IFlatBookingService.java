@@ -9,7 +9,7 @@ import com.cg.onlineflatrental.exception.InvalidFlatInputException;
 
 
 public interface IFlatBookingService {
-	//public FlatBookingDTO addFlatBooking(FlatBooking flatBooking);
+	
 	public FlatBooking updateFlatBooking(FlatBooking flatBooking) throws FlatBookingNotFoundException;
 	public boolean deleteFlatBookingbyId(int bookingNo)throws FlatBookingNotFoundException;
 	public FlatBooking viewFlatBooking(int bookingNo) throws FlatBookingNotFoundException;

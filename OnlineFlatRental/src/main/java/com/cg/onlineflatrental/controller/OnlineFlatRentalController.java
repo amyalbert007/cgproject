@@ -45,11 +45,6 @@ public class OnlineFlatRentalController {
 		logger.info("addFlatBooking1() controller is initiated");
         return flatBookingService.addFlatBooking1(flatBooking);
     }
-	//@PostMapping("/addFlat")
-	//public FlatBookingDTO addFlatBooking(@RequestBody FlatBooking flatBooking)
-	//{
-	//	return flatBookingService.addFlatBooking(flatBooking);
-	//}
 	
 	
 	
@@ -60,13 +55,7 @@ public class OnlineFlatRentalController {
 	
 	
 	
-	//@PutMapping("/updateFlat")
-	//public FlatBooking updateFlatBooking(@RequestBody FlatBooking flatBooking){
-	//		return flatBookingService.updateFlatBooking(flatBooking);
-	//	}
-	//public FlatBookingDTO updateFlatBooking(@RequestBody FlatBooking flatBooking){
-	//	return flatBookingService.updateFlatBooking(flatBooking);
-//	}
+	
 	
 	
 	@PutMapping("/updateFlat")
@@ -85,14 +74,7 @@ public class OnlineFlatRentalController {
 	
 	
 	
-	//@DeleteMapping("/deleteFlat/{bookingNo}")public boolean deleteFlatBookingbyId(@PathVariable int bookingNo){
-		
-	//	return flatBookingService.deleteFlatBookingbyId(bookingNo);
-	//}
-	//public FlatBookingDTO deleteFlatBooking(@PathVariable int id){
-		
-	//	return flatBookingService.deleteFlatBooking(id);
-	//}
+	
 	
 	@DeleteMapping("/deleteFlat/{bookingNo}")
 	public  ResponseEntity deleteFlatById(@PathVariable Integer bookingNo) throws FlatBookingNotFoundException
@@ -110,11 +92,7 @@ public class OnlineFlatRentalController {
 	
 	
 	
-	//@GetMapping("/viewAllFlat/{bookingNo}")
-	//public FlatBooking getFlatBookingById(@PathVariable int bookingNo){
-	//	System.out.println("amit");
-	//	return flatBookingService.viewFlatBooking(bookingNo);
-	//}
+	
 	@GetMapping("/viewAllFlat/{bookingNo}")
 	public ResponseEntity viewFlat(@PathVariable("bookingNo") int bookingNo) throws FlatBookingNotFoundException
 	{
