@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.onlineflatrental.exception.InvalidLandlordInputException;
 import com.cg.onlineflatrental.exception.LandlordNotFoundException;
 import com.cg.onlineflatrental.model.Landlord;
 import com.cg.onlineflatrental.services.ILandlordService;
@@ -38,7 +39,7 @@ public class ILandlordController {
 	}
 
 	@PostMapping("/addLandlord")
-	public Landlord addLandlord(@RequestBody Landlord landlord)
+	public Landlord addLandlord(@RequestBody Landlord landlord) throws InvalidLandlordInputException
 	{
 		return ilandlordservice.addLandlord(landlord);
 	}

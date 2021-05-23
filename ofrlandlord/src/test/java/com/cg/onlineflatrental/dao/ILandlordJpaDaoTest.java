@@ -51,7 +51,7 @@ public class ILandlordJpaDaoTest {
 			
 			
 			flat.setCost((float) 2500);
-			flat.setFlatAdress(flatAddress);
+			flat.setFlatAddress(flatAddress);
 			flat.setAvialibilty("Yes");
 			
 			Landlord saveInDb = testEntityManager.persist(landlord);
@@ -63,37 +63,43 @@ public class ILandlordJpaDaoTest {
 	 public void testViewAllLandlord() throws Exception
 	 {
 		 Landlord landlord1 = new Landlord();
-	    	Flat flat = new Flat();
-	    	FlatAddress flatAddress=new FlatAddress();
+	    	Flat flat1 = new Flat();
+	    	FlatAddress flatAddress1=new FlatAddress();
 	    	
 	    	landlord1.setLandlordId(3);
 	    	landlord1.setLandlordName("Vijeta Choudhary");
 	    	landlord1.setLandlordAge(23);
+	    	landlord1.setFlat(flat1);
 	    	
-		 flatAddress.setHouseNo(100);
-		 flatAddress.setCity("Bangalore");
-		 flatAddress.setStreet("nagpura");
-		 flatAddress.setState("Karnataka");
-		 flatAddress.setCountry("India");
-	   	 flatAddress.setPin(560086);
+		 flatAddress1.setHouseNo(100);
+		 flatAddress1.setCity("Bangalore");
+		 flatAddress1.setStreet("nagpura");
+		 flatAddress1.setState("Karnataka");
+		 flatAddress1.setCountry("India");
+	   	 flatAddress1.setPin(560086);
 			
-		 flat.setCost((float) 2500);
-		 flat.setFlatAdress(flatAddress);
-		 flat.setAvialibilty("Yes");
+		 flat1.setCost((float) 2500);
+		 flat1.setFlatAddress(flatAddress1);
+		 flat1.setAvialibilty("Yes");
 		 
 		 
 		Landlord landlord2 = new Landlord();
-	    	
-		 flatAddress.setHouseNo(10);
-		 flatAddress.setCity("Faridabad");
-		 flatAddress.setStreet("Ballabgarh");
-		 flatAddress.setState("Haryana");
-		 flatAddress.setCountry("India");
-	   	 flatAddress.setPin(360020);
+		Flat flat2 = new Flat();
+    	FlatAddress flatAddress2=new FlatAddress();
+		landlord2.setLandlordId(3);
+    	landlord2.setLandlordName("Vijeta Choudhary");
+    	landlord2.setLandlordAge(23);
+    	landlord2.setFlat(flat2);
+		 flatAddress2.setHouseNo(10);
+		 flatAddress2.setCity("Faridabad");
+		 flatAddress2.setStreet("Ballabgarh");
+		 flatAddress2.setState("Haryana");
+		 flatAddress2.setCountry("India");
+	   	 flatAddress2.setPin(360020);
 			
-		 flat.setCost((float) 16500);
-		 flat.setFlatAdress(flatAddress);
-		 flat.setAvialibilty("Yes");
+		 flat2.setCost((float) 16500);
+		 flat2.setFlatAddress(flatAddress2);
+		 flat2.setAvialibilty("Yes");
 		 
 		 
 		  testEntityManager.persist(landlord1);
@@ -105,14 +111,14 @@ public class ILandlordJpaDaoTest {
 	 }
 	
 	@Test
-    public void testUpdateLandlord(){
+   public void testUpdateLandlord(){
 	 Landlord landlord=new Landlord();
 	 Flat flat=new Flat();
 	 FlatAddress flatAddress=new FlatAddress();
 	 
 	 landlord.setLandlordId(3);
- 	 landlord.setLandlordName("Vijeta Choudhary");
- 	 landlord.setLandlordAge(23);
+	 landlord.setLandlordName("Vijeta Choudhary");
+	 landlord.setLandlordAge(23);
 	 
 	 flatAddress.setHouseNo(100);
 		flatAddress.setCity("Bangalore");
@@ -122,7 +128,7 @@ public class ILandlordJpaDaoTest {
 		flatAddress.setPin(560086);
 		
 		flat.setCost((float) 2500);
-		flat.setFlatAdress(flatAddress);
+		flat.setFlatAddress(flatAddress);
 		flat.setAvialibilty("Yes");
 		
 	 }
@@ -150,16 +156,17 @@ public class ILandlordJpaDaoTest {
 			flatAddress.setPin(560086);
 			
 			flat.setCost((float) 2500);
-			flat.setFlatAdress(flatAddress);
+			flat.setFlatAddress(flatAddress);
 			flat.setAvialibilty("Yes");
 			
 		
 		 
-			Landlord saveToDb = testEntityManager.persist(landlord);
-			Landlord getFromDb = ilandlordjpadao.findById(saveToDb.getLandlordId()).get();//findById
-			assertEquals(getFromDb, saveToDb);
+			Landlord saveInDb = testEntityManager.persist(landlord);
+			Landlord getInDb = ilandlordjpadao.findById(landlord.getLandlordId()).get();
+		     assertThat(getInDb).isEqualTo(saveInDb);
 			
 	    }
+
 
 	
 	 

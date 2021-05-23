@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.cg.onlineflatrental.dao.ILandlordJpaDao;
-
+import com.cg.onlineflatrental.exception.InvalidLandlordInputException;
 import com.cg.onlineflatrental.exception.LandlordNotFoundException;
 import com.cg.onlineflatrental.model.Landlord;
 import com.cg.onlineflatrental.services.ILandlordService;
@@ -51,24 +51,36 @@ public class ILandlordServiceImplTest {
 	FlatAddress flatAddress=null;
 	
 	@Test
-	void testAddLandlord01() throws LandlordNotFoundException 
+	void testAddLandlord01() throws InvalidLandlordInputException 
 	{
 		
 		FlatAddress flatAddress=new FlatAddress(10,"BataRoad","Gurgaon","Haryana",11038,"India");
 		Flat flat=new Flat(78, (float) 20000, flatAddress,"Yes");
-		Landlord landlord=new Landlord(10,"vhjj",11,flat);
+		Landlord landlord=new Landlord(10,"Ankur",11,flat);
 		
 		
 		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
         assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
 	}
 	@Test
-	void testAddLandlord02() throws LandlordNotFoundException 
+	void testAddLandlord02() throws InvalidLandlordInputException 
+	{
+		
+		FlatAddress flatAddress=new FlatAddress(11,"EnglishBazar","Malda","West Bengal",741289,"India");
+		Flat flat=new Flat(78, (float) 205555, flatAddress,"Yes");
+		Landlord landlord=new Landlord(10,"Ankita",11,flat);
+		
+		
+		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
+        assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
+	}
+	@Test
+	void testAddLandlord03() throws InvalidLandlordInputException 
 	{
 		
 		FlatAddress flatAddress=new FlatAddress(11,"BTRoad","Gurgaon","Haryana",11038,"India");
 		Flat flat=new Flat(78, (float) 20000, flatAddress,"Yes");
-		Landlord landlord=new Landlord(10,"jkvkfuf",11,flat);
+		Landlord landlord=new Landlord(10,"Aman",11,flat);
 		
 		
 		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
@@ -96,44 +108,7 @@ public class ILandlordServiceImplTest {
 			assertEquals("No Landlord found in given ID", exception.getMessage());
 		}
 	}
-	@Test
-//	void testDeleteLandlord20() throws LandlordNotFoundException {
-//		assertNotNull(service.viewLandlord(251).getLandlordName());
-//	}
 
-	
-	void testDeleteLandlord21() throws LandlordNotFoundException {
-
-		try {
-			ilandlordservice.deleteLandlordById(109);
-		} catch (LandlordNotFoundException exception) {
-			assertEquals("No Landlord found in given ID", exception.getMessage());
-		}
-	}
-
-	@Test
-	void testDeleteLandlord22() throws LandlordNotFoundException {
-
-		try {
-			ilandlordservice.deleteLandlordById(114);
-		} catch (LandlordNotFoundException exception) {
-			assertEquals("No Landlord found in given ID", exception.getMessage());
-		}
-	}
-
-	@Test
-	void testViewLandlord23() throws LandlordNotFoundException {
-		assertEquals("Name", ilandlordservice.viewLandlordById(245).getLandlordName());
-	}
-
-	@Test
-	void testViewLandlord24() throws LandlordNotFoundException {
-		try {
-			ilandlordservice.viewLandlordById(12);
-		} catch (LandlordNotFoundException exception) {
-			assertEquals("No Landlord found in given ID", exception.getMessage());
-		}
-	}
 
 	@Test
 	void testViewAllLandlord25() {
@@ -148,10 +123,34 @@ public class ILandlordServiceImplTest {
 		}
 	}
 	@Test
-    public void testDeleteFlat() throws Exception{
+    public void testDeleteFlat01() throws Exception{
 		FlatAddress flatAddress=new FlatAddress(10,"BataRoad","Gurgaon","Haryana",11038,"India");
 		Flat flat=new Flat(78, (float) 20000, flatAddress,"Yes");
-		Landlord landlord=new Landlord(10,"vhjj",11,flat);
+		Landlord landlord=new Landlord(10,"Ansh",11,flat);
+		
+	  
+
+			Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
+			ilandlordjpadao.deleteById(landlord.getLandlordId());
+			assertNotEquals(landlord, new Landlord());
+    }
+	@Test
+    public void testDeleteFlat02() throws Exception{
+		FlatAddress flatAddress=new FlatAddress(11,"BareilyRoad","Kanpur","Uttar Pradesh",11038,"India");
+		Flat flat=new Flat(78, (float) 30000, flatAddress,"Yes");
+		Landlord landlord=new Landlord(10,"Ashu",11,flat);
+		
+	  
+
+			Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
+			ilandlordjpadao.deleteById(landlord.getLandlordId());
+			assertNotEquals(landlord, new Landlord());
+    }
+	@Test
+    public void testDeleteFlat03() throws Exception{
+		FlatAddress flatAddress=new FlatAddress(11,"MainRoad","Deoghar","Jharkahnd",11038,"India");
+		Flat flat=new Flat(78, (float) 32000, flatAddress,"Yes");
+		Landlord landlord=new Landlord(10,"Anshika",11,flat);
 		
 	  
 
@@ -163,308 +162,6 @@ public class ILandlordServiceImplTest {
 	
 	
 	
-	/*@Test
-	void testAddLandlord02()  {
-		landlord = new Landlord(5,"Ankit",25,flatAddress);
-		flatAddress = new FlatAddress(1, "street", "city", "state", 221106, "country");
-		flat = new Flat(1, 3456.0f, flatAddress, "yes");
-		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
-        assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
-	}
-
 	
-	@Test
-	public void testAddLandlord03() {
-		landlord = new Landlord(7,"Aman",30,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(30,"Hodal","Palwal","Haryana",121106,"India");
-		Flat flat=new Flat(45, (float) 30000, flatAddress,"Available");
-	}
-	
-	@Test
-	public void testAddLandlord04() 
-	{
-		landlord = new Landlord(11,"Akash",30,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(40,"Jalahalli","Tumkur","Tamil Nadu",360010,"India");
-		Flat flat=new Flat(16, (float) 0, flatAddress,"No");
-		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
-        assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
-	
-	}
-	
-	@Test
-	public void testAddLandlord05()
-	{
-		landlord = new Landlord(12,"Disha",28,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(-5,"Jalahalli","Mangalore","Delhi",260010,"India");
-		Flat flat=new Flat( 10 , (float) 6050, flatAddress,"yes");
-
-	}
-	
-	@Test
-	public void testAddLandlord06() 
-	{
-		Landlord landlord=new Landlord(15,"Rajshree",42,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(60,"","Bangalore","Karnataka",560780,"India");
-		Flat flat=new Flat(150, (float) 6050, flatAddress,"No");
-		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
-        assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
-
-	}
-	
-	@Test
-	public void testAddLandlord07() 
-	{
-		Landlord landlord=new Landlord(16,"Raj",46,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(70,"Vidyaran@ya Pura","Gokarna","Maharashtra",720780,"India");
-		Flat flat=new Flat(50, (float) 22890, flatAddress,"no");
-
-	}
-	
-	@Test
-	public void testAddLandlord08() {
-		Landlord landlord=new Landlord(16,"Sapna",41,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(8,"Vidyaranyapura","","Karnataka",560780,"India");
-		Flat flat=new Flat(10, (float) 10050, flatAddress,"yes");
-		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
-        assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
-	}
-	
-	@Test
-	public void testAddFlat09() 
-	{
-		Landlord landlord = new Landlord(19,"Vidya",37,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(19,"Kormangala","Bangal1ore","Andra Pradesh",860700,"India");
-		Flat flat=new Flat(25, (float) 32000, flatAddress,"Y");
-		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
-        assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
-	}
-	
-	
-	@Test
-	public void testAddLandlord10() 
-	{
-		Landlord landlord = new Landlord(20,"Archana",40,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(32,"Magadi","Gokarna","Goa",60780,"India");
-		Flat flat=new Flat(32, (float) 29600, flatAddress,"Yes");
-		Mockito.when(ilandlordjpadao.saveAndFlush(landlord)).thenReturn(landlord);
-        assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
-	}
-
-	
-	@Test
-	public void testUpdateLandlord11() throws LandlordNotFoundException
-	{
-		Landlord landlord= new Landlord(21,"Ayushi",32,flatAddress);
-		FlatAddress flatAddress=new FlatAddress(32,"Magadi","Gokarna","Goa",60780,"India");
-		Flat flat=new Flat(32, (float) 29600, flatAddress,"Yes");
-		try
-		{
-			Landlord landlord1=ilandlordservice.updateLandlord(landlord);
-			assertEquals("Ayushi", landlord1.getLandlordName());
-		}
-		catch(LandlordNotFoundException exception)
-		{
-			assertEquals("landlord with given id was not found", exception.getMessage());
-		}
-	}
-	
-	
-	@Test
-	void testUpdateLandlord12()  {
-		Landlord landlord=new Landlord();
-		Flat flat=new Flat();
-		FlatAddress flatAddress=new FlatAddress();
-		
-		landlord.setLandlordId(3);
-	       landlord.setLandlordName("Vijeta Choudhary");
-	       landlord.setLandlordAge(23);
-	       
-		flat.getFlatId();
-		flatAddress.setHouseNo(100);
-		flatAddress.setCity("Bangalore");
-		flatAddress.setStreet("Kormangala");
-		flatAddress.setState("Karnataka");
-		flatAddress.setCountry("India");
-		flatAddress.setPin(560086);
-		
-		flat.setCost((float) 2500);
-		flat.setFlatAddress(flatAddress);
-		flat.setAvailability("Yes");
-        iflatjpadao.save(flat);
-
-       flatAddress.setPin(56008);
-        Mockito.when(iflatjpadao.save(flat)).thenReturn(flat);
-		assertEquals(landlord.getFlatAddress().getPin(), 56008);
-    
-	}
-	@Test
-	void testUpdateLandlord19() throws LandlordNotFoundException {
-	
-		Landlord landlord =new Landlord();
-		Flat flat=new Flat();
-		FlatAddress flatAddress=new FlatAddress();
-		
-		 
-	       landlord.setLandlordId(3);
-	       landlord.setLandlordName("Vijeta Choudhary");
-	       landlord.setLandlordAge(23);
-		flatAddress.setHouseNo(10);
-		flatAddress.setCity("Bangalore");
-		flatAddress.setStreet("Kormangala");
-		flatAddress.setState("Karnataka");
-		flatAddress.setCountry("India");
-		flatAddress.setPin(560086);
-		flat.getFlatId();
-		flat.setCost((float) 2500);
-		flat.setFlatAddress(flatAddress);
-		flat.setAvailability("Yes");
-        ilandlordjpadao.save(landlord);
-
-        
-        Mockito.when(ilandlordjpadao.save(landlord)).thenReturn(landlord);
-		
-		
-	}
-	
-	  @Test
-	    public void testViewLandlordById() throws Exception{
-		  
-		 Landlord landlord = new Landlord();
-		 Flat flat=new Flat();
-	       FlatAddress flatAddress=new FlatAddress();
-	       
-	       landlord.setLandlordId(3);
-	       landlord.setLandlordName("Vijeta Choudhary");
-	       landlord.setLandlordAge(23);
-	       
-	            flat.setFlatId(1);
-	            flatAddress.setHouseNo(100);
-				flatAddress.setCity("Bangalore");
-				flatAddress.setStreet("nagpura");
-				flatAddress.setState("Karnataka");
-				flatAddress.setCountry("India");
-				flatAddress.setPin(560086);
-				
-			//	flat.setFlatId(100);
-				flat.setCost((float) 2500);
-				flat.setFlatAddress(flatAddress);
-				flat.setAvailability("Yes");
-				
-				Mockito.when(ilandlordjpadao.save(landlord)).thenReturn(landlord);
-				assertEquals(landlord.getLandlordId(),3);
-	    }
-		
-	  
-	  @Test
-	    public void testViewAllLandlord() throws Exception{
-		  Flat flat=new Flat();
-			 FlatAddress flatAddress=new FlatAddress();
-			 Landlord landlord1=new Landlord();
-			 flatAddress.setHouseNo(10);
-			 flatAddress.setCity("Bangalore");
-			 flatAddress.setStreet("nagpura");
-			 flatAddress.setState("Karnataka");
-			 flatAddress.setCountry("India");
-		   	 flatAddress.setPin(560086);
-				
-			 flat.setCost((float) 2500);
-			 flat.setFlatAddress(flatAddress);
-			 flat.setAvailability("Yes");
-			 
-			 Flat flat=new Flat();
-			 FlatAddress flatAddress=new FlatAddress();
-			 flatAddress.setHouseNo(150);
-			 flatAddress.setCity("Mysore");
-			 flatAddress.setStreet("Nandi Layout");
-			 flatAddress.setState("Kerala");
-			 flatAddress.setCountry("India");
-		   	 flatAddress.setPin(460020);
-				
-			 flat.setCost((float) 16500);
-			 flat.setFlatAddress(flatAddress2);
-			 flat.setAvailability("No");
-
-	        List<Landlord> ticketList = new ArrayList<>();
-	        ticketList.add(landlord1);
-	        ticketList.add(landlord2);
-
-	        Mockito.when(ilandlordjpadao.findAll()).thenReturn(landlordList);
-	        assertThat(iflatjpadao.findAll()).isEqualTo(ticketList);
-	    }
-	  
-	  @Test
-	    public void testDeleteLandlord() throws Exception{
-		  Flat flat = new Flat();
-		  Landlord landlord=new Landlord();
-	       FlatAddress flatAddress=new FlatAddress();
-	       		flat.setFlatId(3); 
-	       		flat.getFlatId();
-	       		flatAddress.setHouseNo(10);
-				flatAddress.setCity("Bangalore");
-				flatAddress.setStreet("Kormangala");
-				flatAddress.setState("Karnataka");
-				flatAddress.setCountry("India");
-				flatAddress.setPin(560086);
-				
-				//flat.setFlatId(100);
-				flat.setCost((float) 2500);
-				flat.setFlatAddress(flatAddress);
-				flat.setAvailability("Yes");
-
-				Mockito.when(ilandordjpadao.save(landlord)).thenReturn(landlord);
-				ilandlordjpadao.deleteById(landlord.getLandlordId());
-				assertNotEquals(landlord, new Landlord());
-	    }
-	 
-	  
-	  @Test
-		void testViewAllLandlordByName01() throws  LandlordtNotFoundException {
-
-			try {
-				ilandlordservice.findByLandlordNameAndLandlordAge("Aditya",13);
-			} catch (InvalidFlatInputException exception) {
-				assertEquals("Availability can be only [YES | NO | Yes | No | yes | no | Y | N | y | n]", exception.getMessage());
-			}
-		}
-
-
-		@Test
-		void testViewAllLandlordByName03() throws LandlordNotFoundException {
-
-			try {
-
-				assertNotNull(ilandlordservice.findBylandlordNameAndlandlordAge("Aman", 30));
-			} catch (LandlordNotFoundException exception) {
-				assertEquals("No Landlord available for given name", exception.getMessage());
-			}
-		}
-
-		@Test
-		void testViewAllLandlord1() {
-			try {
-				assertNull(ilandlordservice.viewAllLandlord());
-			} catch (AssertionFailedError exception) {
-				assertNotNull(ilandlordservice.viewAllLandlord());
-			}
-
-		}
-		
-		@Test
-		void testDeleteLandlord1() throws LandlordNotFoundException {
-			try {
-				assertNull(ilandlordservice.deleteLandlordById(26));
-			} catch (LandlordNotFoundException exception) {
-				assertEquals("landlord with given id was not found", exception.getMessage());
-			}
-		}
-
-		@Test
-		void testViewLandlord() throws LandlordNotFoundException {
-			try {
-				assertEquals(1200, ilandlordservice.viewLandlordById(26).getLandlordName());
-			} catch (LandlordNotFoundException exception) {
-				assertEquals("landlord with given id was not found", exception.getMessage());
-			}
-		}*/
 
 }
