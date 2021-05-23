@@ -58,7 +58,7 @@ class ILandlordControllerTest {
 		
 		flat.setCost((float) 2500);
 		flat.setFlatAddress(flatAddress);
-		flat.setAvialibilty("Yes");
+		flat.setAvailability("Yes");
 		
 		landlord.setLandlordName("Vijeta Choudhary");
 		landlord.setLandlordAge(23);
@@ -95,7 +95,7 @@ class ILandlordControllerTest {
 		
 		flat.setCost((float) 2500);
 		flat.setFlatAddress(flatAddress);
-		flat.setAvialibilty("Yes");
+		flat.setAvailability("Yes");
 		
 		landlord.setLandlordId(3);
 		landlord.setLandlordName("Vijeta Choudhary");
@@ -128,7 +128,7 @@ class ILandlordControllerTest {
 			
 			flat1.setCost((float) 2500);
 			flat1.setFlatAddress(flatAddress1);
-			flat1.setAvialibilty("Yes");
+			flat1.setAvailability("Yes");
 			
 			landlord1.setLandlordId(1);
 			landlord1.setLandlordName("Vijeta Choudhary");
@@ -147,7 +147,7 @@ class ILandlordControllerTest {
 			
 			flat2.setCost((float) 2500);
 			flat2.setFlatAddress(flatAddress2);
-			flat2.setAvialibilty("Yes");
+			flat2.setAvailability("Yes");
 			
 			landlord2.setLandlordId(3);
 			landlord2.setLandlordName("Vijeta Choudhary");
@@ -187,7 +187,7 @@ class ILandlordControllerTest {
 							
 							flat.setCost((float) 2500);
 							flat.setFlatAddress(flatAddress);
-							flat.setAvialibilty("Yes");
+							flat.setAvailability("Yes");
 							String jsonInput = this.convertToJson(landlord);
 	 			
 	 			 Mockito.when(ilandlordservice.viewLandlordById(Mockito.anyInt())).thenReturn(landlord);
@@ -220,7 +220,7 @@ class ILandlordControllerTest {
 							
 							flat.setCost((float) 2500);
 							flat.setFlatAddress(flatAddress);
-							flat.setAvialibilty("Yes");
+							flat.setAvailability("Yes");
 				}
 	 			String jsonInput = this.convertToJson(landlord);
 

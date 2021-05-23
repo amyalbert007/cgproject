@@ -1,7 +1,8 @@
 package com.cg.onlineflatrental.controller;
 
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import com.cg.onlineflatrental.services.ILandlordService;
 @RestController
 @RequestMapping("/landlord")
 public class ILandlordController {
+	private static final Logger logger = LoggerFactory.getLogger(ILandlordController.class);
 
 	@Autowired
 	private ILandlordService ilandlordservice;
@@ -29,32 +31,51 @@ public class ILandlordController {
 	@GetMapping("/viewAllLandlord") 
 	public List<Landlord> viewAllLandlord() 
 	{
+		logger.info("===In Get Controller===");
+		logger.info("/viewAllLandlord URL is opened");
+		logger.info("viewAllLandlord() controller is initiated");
 		return (List<Landlord>) ilandlordservice.viewAllLandlord();
 	}
 
 	@GetMapping("/viewLandlord/{landlordId}")
 	public Landlord viewLandlordById(@PathVariable int landlordId) throws LandlordNotFoundException
 	{
+		logger.info("===In Get Controller===");
+		logger.info("/viewLandlord/{landlordId} URL is opened");
+		logger.info("viewLandlordById() controller is initiated");
 		return ilandlordservice.viewLandlordById(landlordId);
 	}
 
 	@PostMapping("/addLandlord")
-	public Landlord addLandlord(@RequestBody Landlord landlord) throws InvalidLandlordInputException
+	public Landlord addLandlord(@RequestBody Landlord landlord) throws LandlordNotFoundException, InvalidLandlordInputException
 	{
+		logger.info("===In Post Controller===");
+		logger.info("/addLandlord URL is opened");
+		logger.info("addLandlord() controller is initiated");
+		logger.info("addLandlord() controller has executed");
 		return ilandlordservice.addLandlord(landlord);
+		
 	}
 
 	@PutMapping("/updateLandlord")
-	public ResponseEntity updateLandlord(@RequestBody Landlord landlord) throws LandlordNotFoundException
+	public ResponseEntity updateLandlord(@RequestBody Landlord landlord) throws LandlordNotFoundException,InvalidLandlordInputException
 	{
+		logger.info("===In Put Controller===");
+		logger.info("/updateLandlord URL is opened");
+		logger.info("updateLandlord() controller is initiated");
 		Landlord landlord1= ilandlordservice.updateLandlord(landlord);
+		logger.info("updateLandlord() controller has executed");
 		return new ResponseEntity(landlord1, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/deleteLandlord/{landlordId}")
 	public ResponseEntity deleteLandlordById(@PathVariable int landlordId) throws LandlordNotFoundException
 	{
+		logger.info("===In Delete Controller===");
+		logger.info("/deleteLandlord/{landlordId} URL is opened");
+		logger.info("deleteLandlordById() controller is initiated");
 		ilandlordservice.deleteLandlordById(landlordId);
+		logger.info("deleteLandlordById() controller has executed");
 		return  new ResponseEntity("Landlord deleted successfully", HttpStatus.OK);
 	}
 }

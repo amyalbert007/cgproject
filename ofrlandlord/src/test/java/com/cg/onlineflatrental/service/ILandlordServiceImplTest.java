@@ -87,7 +87,7 @@ public class ILandlordServiceImplTest {
         assertThat(ilandlordservice.addLandlord(landlord)).isEqualTo(landlord);
 	}
 	@Test
-    void testUpdateLandlord10() throws LandlordNotFoundException {
+    void testUpdateLandlord10() throws LandlordNotFoundException ,InvalidLandlordInputException{
 		FlatAddress flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
 
@@ -97,7 +97,7 @@ public class ILandlordServiceImplTest {
         assertNotNull(ilandlordservice.updateLandlord(landlord));
     }
 	@Test
-	void testUpdateLandlord11() throws LandlordNotFoundException {
+	void testUpdateLandlord11() throws LandlordNotFoundException,InvalidLandlordInputException{
 		flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
 		flat=new Flat(488, 1000f, flatAddress, "Y");

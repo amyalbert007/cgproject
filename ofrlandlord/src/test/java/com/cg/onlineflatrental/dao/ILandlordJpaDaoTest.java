@@ -52,7 +52,7 @@ public class ILandlordJpaDaoTest {
 			
 			flat.setCost((float) 2500);
 			flat.setFlatAddress(flatAddress);
-			flat.setAvialibilty("Yes");
+			flat.setAvailability("Yes");
 			
 			Landlord saveInDb = testEntityManager.persist(landlord);
 		     Landlord getInDb = ilandlordjpadao.findById(landlord.getLandlordId()).get();
@@ -80,7 +80,7 @@ public class ILandlordJpaDaoTest {
 			
 		 flat1.setCost((float) 2500);
 		 flat1.setFlatAddress(flatAddress1);
-		 flat1.setAvialibilty("Yes");
+		 flat1.setAvailability("Yes");
 		 
 		 
 		Landlord landlord2 = new Landlord();
@@ -99,7 +99,7 @@ public class ILandlordJpaDaoTest {
 			
 		 flat2.setCost((float) 16500);
 		 flat2.setFlatAddress(flatAddress2);
-		 flat2.setAvialibilty("Yes");
+		 flat2.setAvailability("Yes");
 		 
 		 
 		  testEntityManager.persist(landlord1);
@@ -129,7 +129,7 @@ public class ILandlordJpaDaoTest {
 		
 		flat.setCost((float) 2500);
 		flat.setFlatAddress(flatAddress);
-		flat.setAvialibilty("Yes");
+		flat.setAvailability("Yes");
 		
 	 }
 	 
@@ -157,7 +157,7 @@ public class ILandlordJpaDaoTest {
 			
 			flat.setCost((float) 2500);
 			flat.setFlatAddress(flatAddress);
-			flat.setAvialibilty("Yes");
+			flat.setAvailability("Yes");
 			
 		
 		 
