@@ -1,4 +1,4 @@
-package com.cg.onlineflatrental.entities;
+package com.cg.onlineflatrental11.entities;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package com.cg.onlineflatrental.controller;
+package com.cg.onlineflatrental11.controller;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.cg.onlineflatrental.entities.FlatBooking;
-import com.cg.onlineflatrental.exception.FlatBookingNotFoundException;
-import com.cg.onlineflatrental.exception.InvalidFlatInputException;
 
-import com.cg.onlineflatrental.services.IFlatBookingService;
+import com.cg.onlineflatrental11.entities.FlatBooking;
+import com.cg.onlineflatrental11.exception.FlatBookingNotFoundException;
+import com.cg.onlineflatrental11.exception.InvalidFlatInputException;
+import com.cg.onlineflatrental11.services.IFlatBookingService;
 
 @RestController
 @RequestMapping("/api/ofr")

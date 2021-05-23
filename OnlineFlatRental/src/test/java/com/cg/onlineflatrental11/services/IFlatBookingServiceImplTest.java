@@ -1,4 +1,4 @@
-package com.cg.onlineflatrental.services;
+package com.cg.onlineflatrental11.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,13 +16,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.cg.onlineflatrental.dao.IFlatBookingJpaDao;
-import com.cg.onlineflatrental.entities.Flat;
-import com.cg.onlineflatrental.entities.FlatAddress;
-import com.cg.onlineflatrental.entities.FlatBooking;
-import com.cg.onlineflatrental.entities.Tenant;
-import com.cg.onlineflatrental.exception.FlatBookingNotFoundException;
-import com.cg.onlineflatrental.exception.InvalidFlatInputException;
+import com.cg.onlineflatrental11.dao.IFlatBookingJpaDao;
+import com.cg.onlineflatrental11.entities.Flat;
+import com.cg.onlineflatrental11.entities.FlatAddress;
+import com.cg.onlineflatrental11.entities.FlatBooking;
+import com.cg.onlineflatrental11.entities.Tenant;
+import com.cg.onlineflatrental11.exception.FlatBookingNotFoundException;
+import com.cg.onlineflatrental11.exception.InvalidFlatInputException;
+import com.cg.onlineflatrental11.services.IFlatBookingService;
 @SpringBootTest
 public class IFlatBookingServiceImplTest {
 	@MockBean

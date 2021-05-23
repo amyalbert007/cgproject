@@ -1,4 +1,4 @@
-package com.cg.onlineflatrental.exception;
+package com.cg.onlineflatrental11.exception;
 
 public class ErrorMessage {
 	private int errorCode;

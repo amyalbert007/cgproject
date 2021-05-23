@@ -1,4 +1,4 @@
-package com.cg.onlineflatrental.dao;
+package com.cg.onlineflatrental11.dao;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,10 +15,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-import com.cg.onlineflatrental.entities.Flat;
-import com.cg.onlineflatrental.entities.FlatAddress;
-import com.cg.onlineflatrental.entities.FlatBooking;
+import com.cg.onlineflatrental11.dao.IFlatBookingJpaDao;
+import com.cg.onlineflatrental11.entities.Flat;
+import com.cg.onlineflatrental11.entities.FlatAddress;
+import com.cg.onlineflatrental11.entities.FlatBooking;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 class IFlatBookingJpaDaoTest {

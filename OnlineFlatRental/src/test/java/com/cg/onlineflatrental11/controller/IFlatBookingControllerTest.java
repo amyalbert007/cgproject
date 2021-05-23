@@ -1,4 +1,4 @@
-package com.cg.onlineflatrental.controller;
+package com.cg.onlineflatrental11.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,10 +27,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.cg.onlineflatrental.entities.Flat;
-import com.cg.onlineflatrental.entities.FlatAddress;
-import com.cg.onlineflatrental.entities.FlatBooking;
-import com.cg.onlineflatrental.services.IFlatBookingService;
+import com.cg.onlineflatrental11.controller.IFlatBookingController;
+import com.cg.onlineflatrental11.entities.Flat;
+import com.cg.onlineflatrental11.entities.FlatAddress;
+import com.cg.onlineflatrental11.entities.FlatBooking;
+import com.cg.onlineflatrental11.services.IFlatBookingService;
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = IFlatBookingController.class)
 class IFlatBookingControllerTest {

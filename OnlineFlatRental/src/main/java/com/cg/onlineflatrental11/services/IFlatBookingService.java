@@ -1,9 +1,9 @@
-package com.cg.onlineflatrental.services;
+package com.cg.onlineflatrental11.services;
 import java.util.List;
 
-import com.cg.onlineflatrental.entities.FlatBooking;
-import com.cg.onlineflatrental.exception.FlatBookingNotFoundException;
-import com.cg.onlineflatrental.exception.InvalidFlatInputException;
+import com.cg.onlineflatrental11.entities.FlatBooking;
+import com.cg.onlineflatrental11.exception.FlatBookingNotFoundException;
+import com.cg.onlineflatrental11.exception.InvalidFlatInputException;
 
 
 

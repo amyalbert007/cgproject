@@ -1,4 +1,4 @@
-package com.cg.onlineflatrental;
+package com.cg.onlineflatrental11;
 
 import static org.junit.Assert.assertTrue;
 
